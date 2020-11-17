@@ -11,8 +11,9 @@ date: 2019-11-22 14:20:10
 
 ---
 
-
 误打误撞安装了`hexo-renderer-markdown`（下文中将简称`markdown插件`），发现我没有配置正确的`hexo-renderer-markdown-it`正常工作了，但此插件有些我不喜欢的元素，本着折腾的原则，打算学习中手动安装插件。
+
+<!--more-->
 
 ## 学习
 

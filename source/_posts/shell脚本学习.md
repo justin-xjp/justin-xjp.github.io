@@ -2,18 +2,20 @@
 title: shell脚本学习
 toc: true
 mathjax: true
-date: 2019-11-13 09:47:13
 tags:
-	- linux
-	- shell
+  - linux
+  - shell
 categories:
-	- linux
-abbrlink:
+  - linux
+abbrlink: f26f620f
+date: 2019-11-13 09:47:13
 ---
 
  
 
 通过阅读其他人的自动脚本，补足自己的linux基本知识。杂记
+
+<!--more-->
 
 
 

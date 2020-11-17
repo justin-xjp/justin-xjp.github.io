@@ -25,10 +25,13 @@ categories:
 
 对于本地环境的升级操作，以下内容来自于网络，并很有可能已经过时了。
 
-- `npm i hexo-cli -g`
-- `npm install -g npm-check`
+<!--more-->
+
+- `cnpm i hexo-cli -g`
+- `cnpm install -g cnpm-check`
 - `npm-check`
-- `npm install  -g npm-upgrade`
+- `npm-check -u`更新，并--save在了`package.json`里
+- `cnpm install  -g npm-upgrade`
 - `npm-upgrade`
 - `npm update -g`
 - `npm update --save`

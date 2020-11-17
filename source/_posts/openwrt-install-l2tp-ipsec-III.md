@@ -1,6 +1,6 @@
 ---
 title: openwrt配置l2tp/ipsec VPN III
-date: '2019-10-22 15:19'
+date: '2019-10-23 15:19'
 tags:
   - linux
   - openwrt/lede
@@ -12,7 +12,11 @@ categories:
 abbrlink: e7707fd9
 ---
 
+[penwrt配置l2tp/ipsec VPN I](e06ca514)
+
 [penwrt配置l2tp/ipsec VPN II](c738ae61)
+
+[openwrt配置ss-server](2ac5ecda)
 
 ## Why
 
@@ -20,7 +24,7 @@ abbrlink: e7707fd9
 
 为了不打扰工作，我在工作计算机上用VBOX搭建了openwrt。使用~~l2tp/~~ipsec，手机可以免客户端使用VPN，比较方便。手机上安装有“学习强国”，所以不打算使用SS的方法，虽然SS设置起来比较简单。
 
-
+<!--more-->
 
 本篇的目的在于设置openwrt VPN服务器作为Android 和 iPhone/iPad的网关，而无需在移动设备上额外添加软件。
 

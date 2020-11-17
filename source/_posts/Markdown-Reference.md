@@ -16,6 +16,8 @@ categories:
 
 **Markdown** is created by [Daring Fireball](http://daringfireball.net/); the original guideline is [here](http://daringfireball.net/projects/markdown/syntax). Its syntax, however, varies between different parsers or editors. **Typora** is using [GitHub Flavored Markdown][GFM].
 
+<!--more-->
+
 [toc]
 
 ## Block Elements

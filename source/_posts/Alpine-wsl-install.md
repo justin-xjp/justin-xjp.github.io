@@ -20,6 +20,8 @@ abbrlink: a0c259b2
 - 删掉wsl可以将整个环境清理
 - 工作离不开windows
 
+<!--more-->
+
 # Alpine 的安装
 
 ## 谁是Alpine
@@ -157,10 +159,10 @@ sudo npm install -g cnpm
 
 
 ```bash
-npm install hexo-cli -g
+cnpm install hexo-cli -g
 hexo init blog #会执行git clone，没有git的会报错
 cd blog
-npm install
+cnpm install
 hexo server
 ```
 
@@ -172,7 +174,76 @@ hexo server
 
 书写md文件，一直习惯使用Typora，`hexo-renderer-markdown`完整的实现了Typora的语法，其实`hexo-grenderer-markdown-it`应该也能才对，但我一直没有配置成功。不知道为什么……
 
+## 更新本地hexo
 
+- `cnpm i hexo-cli -g`
+- `cnpm install -g cnpm-check`
+- `npm-check`
+- `npm-check -u`更新，并--save在了`package.json`里 , #只做到了这里
+- `cnpm install  -g npm-upgrade`
+- `npm-upgrade`
+- `npm update -g`
+- `npm update --save`
+
+## 最近更换了主题
+
+升级了本地环境以后，maupassan主题出现了问题。只好随手换成了目前最流行的**next**，更换起来很简单，配置也很容易：
+
+```
+cnpm i hexo-theme-next
+```
+更改`_config.yml`设置
+```
+theme: next
+```
+注意空格
+
+复制出**next**的配置文件
+```
+cp node_modules/hexo-theme-next/_config.yml _config.next.yml
+```
+增加 **标签**和**分类**页面
+```
+hexo new page tags
+hexo new page categories
+```
+分别在文件中增设**type**
+
+```
+---
+title: about
+date: 2019-06-25 19:16:17
+type: "about"
+---
+ 
+---
+title: tags
+date: 2019-06-25 19:16:17
+type: "tags"
+---
+ 
+---
+title: categories
+date: 2019-06-25 19:16:17
+type: "categories"
+---
+```
+修订设置文件`_config.next.yml`
+
+```
+menu:
+  home: / || fa fa-home
+  about: /about/ || fa fa-user
+  tags: /tags/ || fa fa-tags
+  categories: /categories/ || fa fa-th
+  archives: /archives/ || fa fa-archive
+  #schedule: /schedule/ || fa fa-calendar
+  #sitemap: /sitemap.xml || fa fa-sitemap
+  #commonweal: /404/ || fa fa-heartbeat
+```
+
+注意空格。
+整体来说，我仍然觉得next的动画有些花哨，我更喜欢以前的简洁。但这么简单的设置是我非常满意的地方。
 
 ---
 

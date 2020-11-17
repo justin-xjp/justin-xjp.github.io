@@ -12,11 +12,19 @@ categories:
 abbrlink: e06ca514
 ---
 
+[penwrt配置l2tp/ipsec VPN II](c738ae61)
+
+[penwrt配置l2tp/ipsec VPN III](e7707fd9)
+
+[openwrt配置ss-server](2ac5ecda)
+
 ## Why
 
 办公网络绑定了物理网卡，又没有给WIFI，确很无礼的经常在办公中使用手机微信联络工作。简单的共享热点，因为MAC的原因，手机仍然没有网络使用。层尝试用代理解决。手机设置代理，仅部分软件能够通过代理使用网络，但一些蛮横的恶霸仍然不管不顾的告诉我没有网络连接。只好尝试在本地提供VPN将网络打通。
 
 为了不打扰工作，我在工作计算机上用VBOX搭建了openwrt。使用l2tp/ipsec，手机可以免客户端使用VPN，比较方便。手机上安装有“学习强国”，所以不打算使用SS的方法，虽然SS设置起来比较简单。
+
+<!--more-->
 
 ## 计划
 
