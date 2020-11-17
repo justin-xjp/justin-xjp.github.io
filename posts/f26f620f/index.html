@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"justin-x.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="通过阅读其他人的自动脚本，补足自己的linux基本知识。杂记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="shell脚本学习">
+<meta property="og:url" content="http://justin-x.github.io/posts/f26f620f/index.html">
+<meta property="og:site_name" content="X的笔记本">
+<meta property="og:description" content="通过阅读其他人的自动脚本，补足自己的linux基本知识。杂记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-13T01:47:13.000Z">
+<meta property="article:modified_time" content="2019-11-13T01:47:13.000Z">
+<meta property="article:author" content="Just XJP">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="shell">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://justin-x.github.io/posts/f26f620f/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>shell脚本学习 | X的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">X的笔记本</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.</span> <span class="nav-text">压缩解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%A4%8D%E5%88%B6%E7%A7%BB%E5%8A%A8%E5%92%8C%E5%88%A0%E9%99%A4"><span class="nav-number">2.</span> <span class="nav-text">文件的复制移动和删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E4%BA%BA%E7%BB%8F%E9%AA%8C"><span class="nav-number"></span> <span class="nav-text">前人经验</span></a></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Just XJP</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://justin-x.github.io/posts/f26f620f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Just XJP">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="X的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          shell脚本学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-11-13 09:47:13" itemprop="dateCreated datePublished" datetime="2019-11-13T09:47:13+08:00">2019-11-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/linux/" itemprop="url" rel="index"><span itemprop="name">linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>通过阅读其他人的自动脚本，补足自己的linux基本知识。杂记</p>
+<a id="more"></a>
+<p>再sh脚本中第一行会有<code>#!/bin/sh</code>语句告诉系统使用什么位置的shell执行脚本。**#!**占8位，是文件类型标识，告诉系统此文件由后续程序解释执行。</p>
+<p><code>$(exec abcd)</code>，可以将命令用**$()**括起来，将执行结果赋值给变量。</p>
+<p><code>exit 0</code>，运行结束的出口状态，出口状态<strong>0</strong>为正常，<strong>1~255</strong>为异常。</p>
+<p><code>2&gt;/dev/null</code> ，输出转移，将错误信息（2）输出到 <strong>null</strong></p>
+<p>shell中的函数可以写在一行，写在一行内时，以<code>; </code>隔离语句，并且在**；**后应有一个‘ ’ 空格。</p>
+<p><code>test</code> 和 <code>[  ]</code>，是条件测试语句，可测试文件属性，可测试字符串特性。常用在 <strong>if</strong>判定位置。</p>
+<p><code>mkdir -p</code> ，<strong>-p</strong>参数确保文件夹存在，如果不存在就创建一个。但也许会有同名文件占据位置？同名的文件。</p>
+<p><code>lsb_release</code>命令可以查看系统信息，如命令不存在，尝试看看<code>/etc/os-release</code>或<code>/etc/lsb-release</code>文件</p>
+<p>判断系统32还是64位，<code>uname -a</code>，或者<code>getconf LONG_BIT</code>。</p>
+<h3 id="压缩解压"><a class="header-anchor" href="#压缩解压"></a>压缩解压</h3>
+<ul>
+<li>tar.xz    <code>tar -Jcf xxxx</code>/<code>tar -Jxf xxxx.tar.xz</code></li>
+</ul>
+<h3 id="文件的复制移动和删除"><a class="header-anchor" href="#文件的复制移动和删除"></a>文件的复制移动和删除</h3>
+<p>linux下文件的复制、移动与删除命令为：cp，mv，rm<br>
+一、文件复制命令cp</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">命令格式：cp [-adfilprsu] 源文件(source) 目标文件(destination)</span><br><span class="line">cp [option] source1 source2 source3 ... directory</span><br></pre></td></tr></table></figure>
+<p>参数说明：<br>
+-a:是指archive的意思，也说是指复制所有的目录<br>
+-d:若源文件为连接文件(link file)，则复制连接文件属性而非文件本身<br>
+-f:强制(force)，若有重复或其它疑问时，不会询问用户，而强制复制<br>
+-i:若目标文件(destination)已存在，在覆盖时会先询问是否真的操作<br>
+-l:建立硬连接(hard link)的连接文件，而非复制文件本身<br>
+-p:与文件的属性一起复制，而非使用默认属性<br>
+-r:递归复制，用于目录的复制操作<br>
+-s:复制成符号连接文件(symbolic link)，即“快捷方式”文件<br>
+-u:若目标文件比源文件旧，更新目标文件</p>
+<p>如将/test1目录下的file1复制到/test3目录，并将文件名改为file2,可输入以下命令：<br>
+cp /test1/file1 /test3/file2</p>
+<p>二、文件移动命令mv</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令格式：mv [-fiv] source destination</span><br></pre></td></tr></table></figure>
+<p>参数说明：<br>
+-f:force，强制直接移动而不询问<br>
+-i:若目标文件(destination)已经存在，就会询问是否覆盖<br>
+-u:若目标文件已经存在，且源文件比较新，才会更新</p>
+<p>如将/test1目录下的file1复制到/test3 目录，并将文件名改为file2,可输入以下命令：<br>
+mv /test1/file1 /test3/file2</p>
+<p>三、文件删除命令rm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">命令格式：rm [fir] 文件或目录</span><br></pre></td></tr></table></figure>
+<p>参数说明：<br>
+-f:强制删除<br>
+-i:交互模式，在删除前询问用户是否操作<br>
+-r:递归删除，常用在目录的删除</p>
+<p>如删除/test目录下的file1文件，可以输入以下命令：<br>
+rm -i /test/file1</p>
+<p><strong>复制：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CP命令</span><br><span class="line">格式: CP [选项]  源文件或目录   目的文件或目录</span><br><span class="line">选项说明:-b 同名,备分原来的文件</span><br><span class="line">        -f 强制覆盖同名文件</span><br><span class="line">        -r  按递归方式保留原目录结构复制文件</span><br><span class="line"></span><br><span class="line">cp -Rf &#x2F;home&#x2F;user1&#x2F;* &#x2F;root&#x2F;temp&#x2F;</span><br><span class="line">将 &#x2F;home&#x2F;user1目录下的所有东西拷到&#x2F;root&#x2F;temp&#x2F;下而不拷贝user1目录本身。</span><br><span class="line">即格式为：cp -Rf 原路径&#x2F; 目的路径&#x2F;</span><br></pre></td></tr></table></figure>
+<p><strong>移动：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">mv .&#x2F;WorkReport&#x2F;web.xml .&#x2F;WorkReport&#x2F;WEB-INF&#x2F;</span><br><span class="line">注：移动&#x2F;WorkReport&#x2F;web.xml文件到&#x2F;WorkReport&#x2F;WEB-INF&#x2F;</span><br><span class="line"></span><br><span class="line">mv &#x2F;data&#x2F;new &#x2F;data&#x2F;old&#x2F;</span><br><span class="line">注：移动&#x2F;data&#x2F;new 到&#x2F;data&#x2F;old&#x2F;文件夹下</span><br><span class="line">注意点：移动文件夹的话就不要再加 &#x2F; 了</span><br><span class="line"></span><br><span class="line">如果是移动文件夹下的所有文件的话就可以文件夹后面跟上 &#x2F;* </span><br><span class="line"></span><br><span class="line">mv &#x2F;data&#x2F;new&#x2F;* &#x2F;data&#x2F;old&#x2F;</span><br></pre></td></tr></table></figure>
+<h2 id="前人经验"><a class="header-anchor" href="#前人经验"></a>前人经验</h2>
+<p>在制作通用性自动脚本时，需要考虑很多环境情况，对发行版本的判断，以及对某一信息在不同软件环境下应如何读取，均需要经验总结。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/shell/" rel="tag"># shell</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/250158f2/" rel="prev" title="8188cu做ap的相关资料">
+                  <i class="fa fa-chevron-left"></i> 8188cu做ap的相关资料
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/a0c259b2/" rel="next" title="hexo环境的搭建">
+                  hexo环境的搭建 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Just XJP</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
