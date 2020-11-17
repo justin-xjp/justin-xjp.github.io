@@ -194,7 +194,7 @@ div {
         margin: 0;
         color: #555;
         text-align: left;
-        font: bold 25px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif;
+        font: bold 30px/1.1 "ff-tisa-web-pro", Cambria, "Times New Roman", Georgia, Times, sans-serif;
         a {
             color: #555;
         }
@@ -267,13 +267,21 @@ div {
         text-align: justify;
         text-justify: distribute;
         word-break: normal;
-        h2 {
-            margin: 1.4em 0 1.1em;
+        
+		h1 {
+			padding-bottom: 0.3em;
+			font-size: 1.6em;
+			border-bottom: 1px solid #eaecef;
+		}
+		h2 {
+            font-size: 1.4em;
+			margin: 1.4em 0 1.1em;
             border-bottom: 1px solid #eee;
             overflow: hidden;
         }
         h3 {
             margin: 1.4em 0 1.1em;
+			font-size: 1.2em;
         }
         pre code {
             padding: 0 2em;
