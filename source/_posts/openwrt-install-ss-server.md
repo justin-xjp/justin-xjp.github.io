@@ -1,5 +1,5 @@
 ---
-title: penwrt配置ss-server
+title: openwrt配置ss-server
 date: '2019-10-24 12:19'
 tags:
   - linux

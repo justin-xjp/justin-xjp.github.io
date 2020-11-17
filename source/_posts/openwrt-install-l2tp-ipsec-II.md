@@ -1,5 +1,5 @@
 ---
-title: penwrt配置l2tp/ipsec VPN II
+title: openwrt配置l2tp/ipsec VPN II
 date: '2019-10-22 15:19'
 tags:
   - linux

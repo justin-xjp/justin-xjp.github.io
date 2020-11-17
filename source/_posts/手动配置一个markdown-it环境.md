@@ -1,5 +1,4 @@
 ---
-layout: timeline
 title: 手动配置一个markdown-it环境
 tags:
   - hexo
@@ -254,3 +253,5 @@ abbrlink: xxxx
 
 [修改链接]:https://zuiyu1818.cn/posts/NexT_seourl.html "更改永久链接的默认方式"
 https://github.com/rozbo/hexo-abbrlink
+
+[abb]: https://github.com/rozbo/hexo-abbrlink	"abbrlink"

@@ -17,10 +17,20 @@ url: http://justin-x.github.io
 root: /
 #permalink: :year/:month/:day/:title/
 #permalink_defaults:
-permalink: posts/:abbrlink.html
+permalink: posts/:abbrlink/
 abbrlink:
   alg: crc32  # 算法：crc16(default) and crc32
   rep: hex    # 进制：dec(default) and hex
+  drafts: false   #(true)Process draft,(false)Do not process draft. false(default) 
+  # Generate categories from directory-tree
+  # depth: the max_depth of directory-tree you want to generate, should > 0
+  # auto_category:
+     # enable: true  #true(default)
+     # depth:        #3(default)
+     # over_write: false 
+  # auto_title: false #enable auto title, it can auto fill the title by path
+  # auto_date: false #enable auto date, it can auto fill the date by time today
+  # force: false #enable force mode,in this mode, the plugin will ignore the cache, and calc the abbrlink for every post even it already had abbrlink.
 pretty_urls:
   trailing_index: true # Set to false to remove trailing index.html from permalinks
 
@@ -78,7 +88,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## Use post's date for updated date unless set in front-matter
-use_date_for_updated: false
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -99,7 +109,10 @@ theme: maupassant
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/justin-xjp/justin-xjp.github.io
+  branch: gh-pages
+  message:
 
 mathjax: true
 # Markdown-it config

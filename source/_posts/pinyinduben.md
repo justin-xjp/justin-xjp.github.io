@@ -1,5 +1,5 @@
 ---
-title: pinyinduben
+title: 拼音读本
 tags:
   - 孩子
 categories:
