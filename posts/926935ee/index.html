@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"justin-x.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="pip该升级了 ！pip该升级了，系统总是提示新版本已经是18了， 我还在用10。其实我觉得还不错，因为可以很方便的通过pip -V指令看出我是不是在pipenv shell环境里。 然后，就是手贱了。 哦,对了,我是windows">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pip升级的困扰">
+<meta property="og:url" content="http://justin-x.github.io/posts/926935ee/index.html">
+<meta property="og:site_name" content="X的笔记本">
+<meta property="og:description" content="pip该升级了 ！pip该升级了，系统总是提示新版本已经是18了， 我还在用10。其实我觉得还不错，因为可以很方便的通过pip -V指令看出我是不是在pipenv shell环境里。 然后，就是手贱了。 哦,对了,我是windows">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-06T09:38:37.000Z">
+<meta property="article:modified_time" content="2018-12-06T09:38:37.000Z">
+<meta property="article:author" content="Just XJP">
+<meta property="article:tag" content="python,pip">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://justin-x.github.io/posts/926935ee/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>pip升级的困扰 | X的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">X的笔记本</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">pip该升级了</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#001"><span class="nav-number">1.0.1.</span> <span class="nav-text">001</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#002"><span class="nav-number">1.0.2.</span> <span class="nav-text">002</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#003"><span class="nav-number">1.0.3.</span> <span class="nav-text">003</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#004"><span class="nav-number">1.0.4.</span> <span class="nav-text">004</span></a></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Just XJP</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://justin-x.github.io/posts/926935ee/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Just XJP">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="X的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pip升级的困扰
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-06 17:38:37" itemprop="dateCreated datePublished" datetime="2018-12-06T17:38:37+08:00">2018-12-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>pip该升级了</h1>
+<p>！pip该升级了，系统总是提示新版本已经是18了， 我还在用10。其实我觉得还不错，因为可以很方便的通过<code>pip -V</code>指令看出我是不是在<code>pipenv shell</code>环境里。</p>
+<p>然后，就是手贱了。</p>
+<p>哦,对了,我是windows</p>
+<a id="more"></a>
+<h3 id="001"><a class="header-anchor" href="#001"></a>001</h3>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;pip install --upgrade pip</span><br><span class="line"> ERROR: To modify pip, please run the following command:</span><br><span class="line">  x:\soft\python364\python.exe -m pip install --upgrade pip</span><br></pre></td></tr></table></figure>
+<p>哦,原来是这个命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&gt;python -m pip install --upgrade pip</span><br><span class="line">Looking in indexes: https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple</span><br><span class="line">Collecting pip</span><br><span class="line"> Using cached https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;packages&#x2F;c2&#x2F;d7&#x2F;90f34cb0d83a6c5631cf71dfe64cc1054598c843a92b400e55675cc2ac37&#x2F;pip-18.1-py2.py3-none-any.whl</span><br><span class="line">Installing collected packages: pip</span><br><span class="line"> Found existing installation: pip 10.0.1</span><br><span class="line">   Uninstalling pip-10.0.1:</span><br><span class="line">     Successfully uninstalled pip-10.0.1</span><br><span class="line"> Rolling back uninstall of pip</span><br><span class="line">Exception:</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_internal\basecommand.py&quot;, line 228, in main</span><br><span class="line">   status &#x3D; self.run(options, args)</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_internal\commands\install.py&quot;, line 335, in run</span><br><span class="line">   use_user_site&#x3D;options.use_user_site,</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_internal\req\__init__.py&quot;, line 49, in install_given_reqs</span><br><span class="line">   **kwargs</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_internal\req\req_install.py&quot;, line 748, in install</span><br><span class="line">   use_user_site&#x3D;use_user_site, pycompile&#x3D;pycompile,</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_internal\req\req_install.py&quot;, line 961, in move_wheel_files</span><br><span class="line">   warn_script_location&#x3D;warn_script_location,</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_internal\wheel.py&quot;, line 431, in move_wheel_files</span><br><span class="line">   generated.extend(maker.make(spec))</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_vendor\distlib\scripts.py&quot;, line 403, in make</span><br><span class="line">   self._make_script(entry, filenames, options&#x3D;options)</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_vendor\distlib\scripts.py&quot;, line 307, in _make_script</span><br><span class="line">   self._write_script(scriptnames, shebang, script, filenames, ext)</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_vendor\distlib\scripts.py&quot;, line 243, in _write_script</span><br><span class="line">   launcher &#x3D; self._get_launcher(&#39;t&#39;)</span><br><span class="line"> File &quot;X:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip\_vendor\distlib\scripts.py&quot;, line 382, in _get_launcher</span><br><span class="line">   result &#x3D; finder(distlib_package).find(name).bytes</span><br><span class="line">AttributeError: &#39;NoneType&#39; object has no attribute &#39;bytes&#39;</span><br></pre></td></tr></table></figure>
+<p>em~,似乎出了个什么错误?</p>
+<p>不过升级完了吗?</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;pip -V</span><br><span class="line"> pip 10.0.1 from x:\soft\python364\lib\site-packages\pip-10.0.1-py3.6.egg\pip (python 3.6)</span><br><span class="line"></span><br><span class="line">&gt;python -m pip -V</span><br><span class="line"> pip 18.1 from X:\soft\python364\lib\site-packages\pip (python 3.6)</span><br></pre></td></tr></table></figure>
+<p>有两个版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python -m pip uninstall pip-10</span><br><span class="line">Skipping pip-10 as it is not installed.</span><br></pre></td></tr></table></figure>
+<h3 id="002"><a class="header-anchor" href="#002"></a>002</h3>
+<p>老版本应该已经卸载完了，那么，手贱*2，我删除了pip-10的那个文件夹。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&gt;pip</span><br><span class="line"> Traceback (most recent call last):</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\\\__init\_\_.py&quot;, line 659, in _build_master</span><br><span class="line">     ws.require(\_\_requires\_\_)</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\\\_\_init\_\_.py&quot;, line 967, in require</span><br><span class="line">     needed &#x3D; self.resolve(parse_requirements(requirements))</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\\\_\_init__.py&quot;, line 858, in resolve</span><br><span class="line">     raise VersionConflict(dist, req).with_context(dependent_req)</span><br><span class="line"> pkg_resources.VersionConflict: (pip 18.1 (x:\soft\python364\lib\site-packages), Requirement.parse(&#39;pip&#x3D;&#x3D;10.0.1&#39;))</span><br><span class="line"></span><br><span class="line"> During handling of the above exception, another exception occurred:</span><br><span class="line"></span><br><span class="line"> Traceback (most recent call last):</span><br><span class="line">   File &quot;X:\soft\python364\Scripts\pip-script.py&quot;, line 6, in &lt;module</span><br><span class="line">     from pkg_resources import load_entry_point</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\__init__.py&quot;, line 3017, in &lt;module</span><br><span class="line">     @_call_aside</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\__init__.py&quot;, line 3003, in _call_aside    f(*args, **kwargs)</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\__init\_\_.py&quot;, line 3030, in _initialize_master_working_set</span><br><span class="line">     working_set &#x3D; WorkingSet._build_master()  File &quot;x:\soft\python364\lib\site-packages\pkg_resources\\\_\_init\_\_.py&quot;, line 661, in _build_master</span><br><span class="line">     return cls._build_from_requirements(\_\_requires\_\_)</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\__init\_\_.py&quot;, line 674, in _build_from_requirements    dists &#x3D; ws.resolve(reqs, Environment())</span><br><span class="line">   File &quot;x:\soft\python364\lib\site-packages\pkg_resources\\\_\_init__.py&quot;, line 853, in resolve</span><br><span class="line">     raise DistributionNotFound(req, requirers)pkg_resources.DistributionNotFound: The &#39;pip&#x3D;&#x3D;10.0.1&#39; distribution was not found and is required by the application</span><br></pre></td></tr></table></figure>
+<p>好吧，<code>pip</code>命令目前不能直接执行了， <code>python -m pip</code>还可以。该怎么做？</p>
+<h3 id="003"><a class="header-anchor" href="#003"></a>003</h3>
+<p>我打算去看看报错的那些文件</p>
+<p>首先</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> File &quot;x:\soft\python364\lib\site-packages\pkg_resources\\\__init\_\_.py&quot;, line 659, in _build_master</span><br><span class="line">​    ws.require(\_\_requires\_\_)</span><br></pre></td></tr></table></figure>
+<p>嗯。完全不是能搞定的事情，我还是老老实实的找安装包吧</p>
+<h3 id="004"><a class="header-anchor" href="#004"></a>004</h3>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://pypi.org/project/pip/#files%E4%B8%8B%E8%BD%BD">https://pypi.org/project/pip/#files下载</a><code>pip-18.1.tar.gz</code></li>
+<li>解压放在<code>site-packages</code>里，并进入文件夹</li>
+<li>执行<code>python setup.py install</code></li>
+</ol>
+<p>搞定</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python-pip/" rel="tag"># python,pip</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/33118b3d/" rel="prev" title="VScode的基础知识">
+                  <i class="fa fa-chevron-left"></i> VScode的基础知识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/3391ae3a/" rel="next" title="py和vscode入门">
+                  py和vscode入门 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Just XJP</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

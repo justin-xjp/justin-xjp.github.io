@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"justin-x.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="来自于VScode 的文档 Getting Start with Python in VS CODE 教程中会通过创建一个简单的“hello world”来熟悉使用扩展。 前提条件 需要如下准备：   安装python 扩展。   安装python3。   在 windows 上确保path系统环境变量包含了解释器路径。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="py和vscode入门">
+<meta property="og:url" content="http://justin-x.github.io/posts/3391ae3a/index.html">
+<meta property="og:site_name" content="X的笔记本">
+<meta property="og:description" content="来自于VScode 的文档 Getting Start with Python in VS CODE 教程中会通过创建一个简单的“hello world”来熟悉使用扩展。 前提条件 需要如下准备：   安装python 扩展。   安装python3。   在 windows 上确保path系统环境变量包含了解释器路径。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-07T07:36:28.000Z">
+<meta property="article:modified_time" content="2018-12-07T07:36:28.000Z">
+<meta property="article:author" content="Just XJP">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="VScode">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://justin-x.github.io/posts/3391ae3a/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>py和vscode入门 | X的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">X的笔记本</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Getting Start with Python in VS CODE</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.0.1.</span> <span class="nav-text">前提条件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.1.</span> <span class="nav-text">基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%B9%B6%E8%BF%90%E8%A1%8Cdebugger"><span class="nav-number">1.1.1.</span> <span class="nav-text">配置并运行debugger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%92%E9%99%A4%E6%95%85%E9%9A%9C"><span class="nav-number">1.1.2.</span> <span class="nav-text">排除故障</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8%E5%8C%85"><span class="nav-number">1.1.3.</span> <span class="nav-text">安装和使用包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Python和VS Code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E5%86%B3"><span class="nav-number">2.1.</span> <span class="nav-text">环境搭建问题及解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%90%E5%8A%9F1"><span class="nav-number">2.1.1.</span> <span class="nav-text">成功1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%BF%E8%89%B2%E8%A7%A3%E5%8E%8B%E5%9C%A8%E8%99%9A%E6%8B%9F%E7%9B%98"><span class="nav-number">2.1.2.</span> <span class="nav-text">绿色解压在虚拟盘</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VS-Code-portable"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">VS Code portable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step1"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">step1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2"><span class="nav-number">2.1.2.3.</span> <span class="nav-text">step2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.1.3.</span> <span class="nav-text">其他设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-Python-environments-in-VS-Code"><span class="nav-number">2.2.</span> <span class="nav-text">Using Python environments in VS Code</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E5%B9%B6%E6%BF%80%E6%B4%BB%E4%B8%80%E4%B8%AA%E7%8E%AF%E5%A2%83%E3%80%82"><span class="nav-number">2.2.1.</span> <span class="nav-text">选择并激活一个环境。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%92%8C%E7%BB%88%E7%AB%AF%E7%AA%97%E5%8F%A3"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">环境和终端窗口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9debugging%E7%8E%AF%E5%A2%83"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">选择debugging环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E6%96%87%E4%BB%B6%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-number">2.2.2.</span> <span class="nav-text">环境文件的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E3%80%81%E8%99%9A%E6%8B%9F-%E5%92%8Cconda-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">全局、虚拟 和conda 环境变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E6%8C%87%E5%AE%9A%E8%A7%A3%E9%87%8A%E5%99%A8"><span class="nav-number">2.2.2.1.1.</span> <span class="nav-text">手动指定解释器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%AE%9A%E4%B9%89%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.3.</span> <span class="nav-text">虚拟环境定义文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8PYTHONPATH%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-number">2.2.4.</span> <span class="nav-text">使用PYTHONPATH环境变量</span></a></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Just XJP</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://justin-x.github.io/posts/3391ae3a/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Just XJP">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="X的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          py和vscode入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-07 15:36:28" itemprop="dateCreated datePublished" datetime="2018-12-07T15:36:28+08:00">2018-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>来自于VScode 的文档</p>
+<h1>Getting Start with Python in VS CODE</h1>
+<p>教程中会通过创建一个简单的“hello world”来熟悉使用扩展。</p>
+<h3 id="前提条件"><a class="header-anchor" href="#前提条件"></a>前提条件</h3>
+<p>需要如下准备：</p>
+<ol>
+<li>
+<p>安装python 扩展。</p>
+</li>
+<li>
+<p>安装python3。</p>
+</li>
+<li>
+<p>在 windows 上确保<code>path</code>系统环境变量包含了解释器路径。</p>
+</li>
+</ol>
+<a id="more"></a>
+<h2 id="基本操作"><a class="header-anchor" href="#基本操作"></a>基本操作</h2>
+<ul>
+<li>打开工作区文件夹</li>
+<li>选择python interpreter</li>
+<li>创建hello world代码文件
+<ul>
+<li>输入代码的时候能够注意到代码自动补全功能，该功能会覆盖所有标准模块，和当前环境已安装模块。同时还提供了对象类型上可用的方法。</li>
+</ul>
+</li>
+<li>运行程序
+<ul>
+<li>右键——在终端中运行代码</li>
+<li>选中代码，<code>shift+enter</code>，相当于在终端中运行选中的代码</li>
+<li><code>Python: Start REPL</code>，打开一个终端，一次一行代码</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置并运行debugger"><a class="header-anchor" href="#配置并运行debugger"></a>配置并运行debugger</h3>
+<ul>
+<li><code>f9</code>设置断点，也可以在行号附近直接鼠标点击。</li>
+<li>选择debug试图</li>
+<li>打开配置菜单，会创建<code>launch.json</code></li>
+<li>选择<strong>Python: Current File (Integrated Terminal)</strong>
+<ul>
+<li>添加<code>&quot;stopOnEntry&quot;: true</code>，使得程序自动在第一行停下来。</li>
+</ul>
+</li>
+<li>在代码页面<code>f5</code>执行，因为刚刚设设置，debug在第一行前停下来。</li>
+<li>调试栏按钮：继续（<code>F5</code>）、跨步（<code>F10</code>）、进入（<code>F11</code>）、退出（<code>Shift+F11</code>）、重新启动（<code>Ctrl+Shift+F5</code>）和停止（<code>Shift+F5</code>）</li>
+<li>更详细的信息看<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/python/debugging">debug配置</a></li>
+</ul>
+<blockquote>
+<p><strong>Tip:使用 Logpoints(日志点)输出过程信息</strong>: 开发过程中经常使用<code>print</code>语句快速输出过程中信息。在VS Code中可以使用<code>Logpoints</code>替代。<code>Logpoint</code>就像一个断电，它会将消息记录到控制台，且不会停止该程序。更多信息参考<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/editor/debugging#_logpoints">Logpoints</a></p>
+</blockquote>
+<h3 id="排除故障"><a class="header-anchor" href="#排除故障"></a>排除故障</h3>
+<p>某些原因没有自动生成<code>launch.json</code>，可以自行创建。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;0.2.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Python: Current File (Integrated Terminal)&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;type&quot;</span>: <span class="string">&quot;python&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;request&quot;</span>: <span class="string">&quot;launch&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;program&quot;</span>: <span class="string">&quot;$&#123;file&#125;&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;console&quot;</span>: <span class="string">&quot;integratedTerminal&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="安装和使用包"><a class="header-anchor" href="#安装和使用包"></a>安装和使用包</h3>
+<p>来个更有趣的例子。本例中将使用<code>matplotlib</code>和<code>numpy</code>创建图形，就像是数据科学常用的那样。（注意，win10的WSL是没有UI的，不能成功运行<code>matplotlib</code> ）</p>
+<ul>
+<li>创建<code>standardplot.py</code>文件并添加以下代码：</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">x = np.linspace(<span class="number">0</span>, <span class="number">20</span>, <span class="number">100</span>)  <span class="comment"># Create a list of evenly-spaced numbers over the range</span></span><br><span class="line">plt.plot(x, np.sin(x))       <span class="comment"># Plot the sine of each x point</span></span><br><span class="line">plt.show()                   <span class="comment"># Display the plot</span></span><br></pre></td></tr></table></figure>
+<p>尝试运行代码，然后你会看到&quot;ModuleNotFoundError: No module named 'matplotlib&quot;，提醒你没有安装matplotlib模块。</p>
+<ul>
+<li>运行<code>Terminal: Crate New Integrated Terminal(ctrl +shift + ')</code>,创建一个新的集成终端。然后输入以下命令：</li>
+</ul>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Don&#x27;t use with Anaconda distributions because they include matplotlib already.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># macOS</span></span><br><span class="line">sudo python3 <span class="literal">-m</span> pip install matplotlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows (may require elevation)</span></span><br><span class="line">python <span class="literal">-m</span> pip install matplotlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># Linux (Debian)</span></span><br><span class="line">sudo apt<span class="literal">-get</span> install python3<span class="literal">-tk</span></span><br><span class="line">python <span class="literal">-m</span> pip install matplotlib</span><br><span class="line"></span><br><span class="line"><span class="comment"># Windows + pipenv </span></span><br><span class="line">pipenv install matplotlib</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>matplotlib</code>和<code>numpy</code>（作为依赖）安装成功后，再次运行程序。有一个包含图像绘图窗口出现</li>
+</ul>
+<p><strong>debug</strong>里没有找到虚拟环境下的<code>matplotlib</code>。尝试查看**<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/python/debugging">debug设置</a>**</p>
+<hr>
+<h1>Python和VS Code</h1>
+<h2 id="环境搭建问题及解决"><a class="header-anchor" href="#环境搭建问题及解决"></a>环境搭建问题及解决</h2>
+<p>我的生产环境，python和vs code都是在VHD里，并且是绿色解压安装。我需要解决以下问题：</p>
+<ul class="task-list">
+<li class="task-list-item">
+<p><input type="checkbox" id="cbx_0" disabled="true"><label for="cbx_0"> <s>每次对VHD进行挂载/卸载时，对应添加/删除PATH中的变量。</s></label></p>
+<p>目前来看，这个想法不切实际。应该是涉及到注册表操作，而且还要考虑在操作过程中，环境变量发生改变该如何更新。</p>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" id="cbx_1" checked="true" disabled="true"><label for="cbx_1"> 最好不用修改PATH即可直接使用。无可避免的还是设置了，而且设置了更多的系统变量。</label></p>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" id="cbx_2" checked="true" disabled="true"><label for="cbx_2"> 用好pipenv或其他环境设置</label></p>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" id="cbx_3" checked="true" disabled="true"><label for="cbx_3"> 修改不同env时，python 包的安装位置</label></p>
+</li>
+<li class="task-list-item">
+<p><input type="checkbox" id="cbx_4" checked="true" disabled="true"><label for="cbx_4"> VS CODE在发现缺少包，并自动执行PIP安装时，安装到了<code>%appdata%\python\python36\</code>下。问题出在VSCODE在使用 pip install的时候添加了–user参数，使得安装到了上述文件夹，需要继续学习CODE的配置。</label></p>
+</li>
+</ul>
+<h3 id="成功1"><a class="header-anchor" href="#成功1"></a>成功1</h3>
+<p>安装VS code和python，不改变默认路径，成功了。</p>
+<h3 id="绿色解压在虚拟盘"><a class="header-anchor" href="#绿色解压在虚拟盘"></a>绿色解压在虚拟盘</h3>
+<p>因为在折腾中瞥间过一次成功。现在一个一个改</p>
+<h4 id="VS-Code-portable"><a class="header-anchor" href="#VS-Code-portable"></a>VS Code portable</h4>
+<p>在解压目录添加<code>data</code>子文件夹，升级时保留这个文件夹不被替换。</p>
+<p>添加<code>tmp</code>子文件夹.</p>
+<p><strong>portable</strong>模式与安装版可以同时存在，安装版能够找到pipenv的interpreter，portable的找不到，与下面的结果相同。这应该是个bug。</p>
+<h4 id="step1"><a class="header-anchor" href="#step1"></a>step1</h4>
+<ol>
+<li>添加vs code的路径到path。使用powershell仍然不能使用命令行。</li>
+<li>添加python 和 python\script 到path</li>
+</ol>
+<h4 id="step2"><a class="header-anchor" href="#step2"></a>step2</h4>
+<ul>
+<li><strong>找不到pylint</strong>，更改默认<code>pip install --user</code>的路径。在系统环境变量中添加：<code>PYTHONUSERBASE=/XXXX/</code>。可以指定–user的目标目录。同时添加系统环境变量<code>PYTHONPATH</code>，将<code>%PYTHONUSERBASE%/PYTHON36/SCRIPTS</code>添加进去，使<strong>python 能够找到它</strong>。添加此项<strong>不需重启</strong></li>
+<li><strong>对应上不上的.ven环境文件</strong>。
+<ul>
+<li>直接pipenv install。文件建立在<code>c:\user\name\.virtualenvs\</code>下。不能列出选择的虚拟interpreter。
+<ul>
+<li>添加<code>c:\user\name\.virtualenvs\xxxx\python.exe</code>到<code>python.pythonPath</code>属性。出现过一次可以选择，然后就又没有了。<strong>重启试试</strong>。仍然不行。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>最后的体验：</p>
+<ul>
+<li>vs code是能够认出pipenv环境的，当弹出需要安装pylint的时候，会使用<code>pipenv install pylint -dev</code>的命令。但是人不能提供<code>interpreter pipenv</code>的选择。不久前看到的成功是在设置了<code>python.pythonPath</code>的情况下出现的，而且不能再现。</li>
+<li>尝试设置<code>python.venvPath</code>指向<code>x:\xxxx\.virtualenvs\</code>，没有任何效果。</li>
+</ul>
+<p><strong>至此，U盘 (或是VHD) 的 python + vs code 尝试失败</strong>， 要是有人有能力实现，烦请告知。其实，我认为主要是pipenv的支持出现了问题，如果换成其他方式的虚拟环境，应该是不成问题的。</p>
+<h3 id="其他设置"><a class="header-anchor" href="#其他设置"></a>其他设置</h3>
+<p>添加了<code> &quot;git.path&quot;:&quot;X:\\soft\\git\\cmd\\git.exe&quot;,</code>到用户设置文件，settings.json。git 就可以用了。手动时期git都是用的ubuntu里的，现在常用的缩写st, ci, lg, 什么的都不能使用，但相对来说，Code提供了图形化的方式，也更方便了。<br>
+唯一的问题：<em>X</em> 是VHD挂载的硬盘，虽说现在没有问题，但不能保证什么时候都会出现在 <strong>X</strong> 这个位置上。该怎么解决？</p>
+<ul>
+<li>在CODE的快捷方式添加了<code>X:\soft\VSCode-win32-x64\Code.exe --extensions-dir X:\soft\vscodeexten\</code>，将扩展安装位置移到了X目录下，正尝试移动默认配置文件存储位置。</li>
+<li>添加<code>WORKON_HOME=%home%\.virtualenvs</code>和<code>home=x:\xxx</code>到系统变量，可改变pipenv（实际是virtualenv）环境文件夹的位置。</li>
+<li>添加<code>x:\python3.6\script</code>到<code>path</code>变量，使VS CODE能够找到pipenv。</li>
+<li><strong>在<code>.vscode\settings.json</code>中添加<code>&quot;python.venvPath&quot;: &quot;X:\\xxxx\\.virtualenvs\\xxxxxx&quot;,</code>，尝试环境的人工指定。VScode能自动识别PIPENV并挂在虚拟环境。仅识别一个pipenv就不再继续（其实，我也只会用一个目前)</strong></li>
+<li>在<code>%appdata%\pip\pip.ini</code>中添加如下，可以改变PIP的服务器。</li>
+</ul>
+<blockquote>
+<p>[global]<br>
+index-url = <a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a></p>
+</blockquote>
+<ul>
+<li>在使用pipenv的环境中不能存在中文路径。</li>
+<li>在<code>pipfiles</code>里更改如下，可在环境中使用pypi镜像站：</li>
+</ul>
+<blockquote>
+<p>[[source]]</p>
+<p>url = “<a target="_blank" rel="noopener" href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a>”</p>
+</blockquote>
+<ul>
+<li><code>pipenv run</code>和<code>pipenv shell</code>是自动识别目录下<code>.env</code>文件并加载的。</li>
+<li>在<a target="_blank" rel="noopener" href="https://github.com/Microsoft/vscode-python/issues">vscode-python-issues</a>里找东西比一行行看手册快多了。</li>
+</ul>
+<h2 id="Using-Python-environments-in-VS-Code"><a class="header-anchor" href="#Using-Python-environments-in-VS-Code"></a>Using Python environments in VS Code</h2>
+<p>一般情况下，python扩展会默认寻找path变量中的python解释器，如果没有找到，每次启动都会报错。着对我绿色安装无疑是受打击的。设置<code>python.disalbeInstallationCheck</code>为<code>ture</code>能够关闭这个检测。</p>
+<h3 id="选择并激活一个环境。"><a class="header-anchor" href="#选择并激活一个环境。"></a>选择并激活一个环境。</h3>
+<blockquote>
+<p>python:Select Interpreter</p>
+</blockquote>
+<p>你可以随时切换环境。命令执行时会显示默认环境、conda环境和virtual 环境。</p>
+<p>python扩展使用选择的环境来运行代码（使用命令python:run python file in terminal），当你打开<code>.py</code>文件时，会提供语言服务（自动补全，查错，语法检查，格式化等）。使用<code>terminal:creat new integrated terminal</code>会自动创建环境。（看起来并没用运行虚拟环境PIPENV SHELL。是哪里理解有错吗？）</p>
+<p>状态栏会一直显示当前选用的解释其，点击它就可以快速执行<code>python:select interpreter</code>命令。</p>
+<h4 id="环境和终端窗口"><a class="header-anchor" href="#环境和终端窗口"></a>环境和终端窗口</h4>
+<p>在选择一个解释器（环境）后，右键点击列表中的文件，并选择<strong>在终端中运行python文件</strong>。环境也会自动激活。除非修改<code>python.erminal.activateEnvironment</code>为<code>false</code>。</p>
+<p>然而，在SHELL里运行VS CODE，并不会自动激活虚拟环境，需要使用<code>terminal:creat new integrated terminal</code>。还要注意powershell中运行vs code，不会激活conda环境。</p>
+<p>在任何已经打开的环境终端中进行修改都是可行的。并且切换环境并不会影响已经打开的环境。你可以切换不同的环境打开不同的终端。</p>
+<h4 id="选择debugging环境"><a class="header-anchor" href="#选择debugging环境"></a>选择debugging环境</h4>
+<p><code>python.pythonPath</code>（注意P的大写）设定了debugging用的环境。此变量在select interpreter命令后会自动改变。此变量可同时存在于<code>launch.json</code>和workspace setting以及<code>user settings.json</code>。他的选取优先顺序为：</p>
+<ol>
+<li>launch.json</li>
+<li>Workspace</li>
+<li>User settings.json</li>
+</ol>
+<h3 id="环境文件的位置"><a class="header-anchor" href="#环境文件的位置"></a>环境文件的位置</h3>
+<p>扩展自动在以下位置寻找解释器（interpreters）：</p>
+<ul>
+<li>常规安装文件路径：<code>/usr/local/bin</code>,<code>/usr/sbin</code>,<code>/sbin</code>,<code>c:\\python27</code>,<code>c:\\python36</code></li>
+<li>在workspace目录下的虚拟环境目录</li>
+<li>由<code>python.venvPath</code>指定的虚拟环境，可以含有多个环境，指定总目录，扩展会搜寻一级子目录。（select interpreter命令仍然只能看到一个默认解释器，我的pipenv找不到呢？）</li>
+<li>pyenv安装的解释器</li>
+<li>一个对应workpalce文件夹的pipenv环境，如果找到一个，就不会再寻找其他解释器环境，或是pipenv期望管理的环境。</li>
+</ul>
+<p>仍然可以手动指定环境，如果没有认出来的话.</p>
+<h4 id="全局、虚拟-和conda-环境变量"><a class="header-anchor" href="#全局、虚拟-和conda-环境变量"></a>全局、虚拟 和conda 环境变量</h4>
+<p>默认情况下，任何的经你安装的python interpreter都会运行他自己的全局环境（global environment)，并不局限于特定的某个项目 。例如，如果你只是在命令行下运行Python，则实在全局环境的解释器中运行的。因此，安装或卸载任何包都会影响到全局环境及在全局环境中运行的程序。（python扩展的2018.8.1版及以后，会自动更新运行环境）</p>
+<p>尽管在全局环境中工作是一种简单的入门方法，但随着时间的推移，运行环境将因为你为不同的工程安装的大量不同的包（甚至有冲突）而变得杂乱无章。这种杂乱使得很难针对一组特定版本的包对程序进行彻底测试，比如生产环境或服务器环境。</p>
+<p>为此，开发人员通常会创建一个虚拟环境。虚拟环境是项目中包含特定解释器副本的子文件夹。当你激活虚拟环境时，安装的任何包都只存在于该虚拟环境的子文件夹中。然后，当你在该环境中运行python程序时，你就知道它在这些特定包下运行的状况。</p>
+<blockquote>
+<p>Tip: conda 环境时使用 conda包管理器进行创建和管理的。</p>
+</blockquote>
+<p><strong>创建虚拟环境</strong>，使用如下命令，其中&quot;.venv&quot;时环境文件夹的名称：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Windows</span></span><br><span class="line">python <span class="literal">-m</span> venv .venv</span><br><span class="line"><span class="comment">#或是py -3 -m venv .venv</span></span><br></pre></td></tr></table></figure>
+<p>如何在项目中使用虚拟环境的示例，参见https://code.visualstudio.com/docs/python/tutorial-django 和https://code.visualstudio.com/docs/python/tutorial-flask</p>
+<p><strong>到这里，原页面教程中关于虚拟环境一直使用的是venv，没有更现代的工具。</strong></p>
+<blockquote>
+<p>在早期的（2018.10前）python扩展中，如果你在vs code的terminal里改变或创建了一个虚拟环境，需要在<code>command palette</code>执行<strong>Reload Window</strong>命令，然后用<strong>Python:Select Interpreter</strong>命令激活环境。</p>
+<p><code>requirements.txt</code>文件可以帮助重建需要的环境，<code>pip freeze &gt; requirements.txt</code>生成文件，使用<code>pip install -r requirements.txt</code>再次部署。通过在不同的虚拟环境还原requirements文件的描述来达到复制环境的目的。这个做法好原始。</p>
+</blockquote>
+<h5 id="手动指定解释器"><a class="header-anchor" href="#手动指定解释器"></a>手动指定解释器</h5>
+<ol>
+<li>可以在工作区域（workspace）中的settings中添加<code>python.pythonPath</code>属性</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;python.pythonPath&quot;: &quot;c:&#x2F;python36&#x2F;python.exe&quot;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>还可以使用<code>python.pythonPath</code>指向虚拟环境</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;python.pythonPath&quot;: &quot;c:&#x2F;dev&#x2F;venv&#x2F;Scripts&#x2F;python.exe&quot;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>或是使用环境变量。如创建一个<code>PYTHON_INSTALL_LOC</code>的变量并在设置中：(经试验，<em>不好用</em> )</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;python.pythonPath&quot;: &quot;$&#123;env:PYTHON_INSTALL_LOC&#125;&quot;</span><br></pre></td></tr></table></figure>
+<p>环境变量在WIN10环境中没有成功。但这应该是在不同系统间传递项目的最简单设置，只需在系统上设置环境变量即可。</p>
+<h3 id="虚拟环境定义文件"><a class="header-anchor" href="#虚拟环境定义文件"></a>虚拟环境定义文件</h3>
+<p>这个文件是一个简单的文本文件，其中键值、变量一行一个，不支持多行变量。<code>environment_variable=balue</code>可用<code>#</code>注释。</p>
+<p>默认情况下，python扩展会加载当前工作区中的<code>.env</code>文件，这个文件默认由`“python.envFile”: &quot;${workspaceFolder}/.env&quot;指定。可是随时改变这个设定成任意其他文件名。（但不建议更改）</p>
+<p>debug环境同样包含一个<code>envFile</code>属性，也默认为当前工作区的<code>.env</code>。可修改成调试目的用的变量。</p>
+<p>举例来说，当开发一个web应用时，可能需要在开发服务器和生产环境之间来回切换。就可以如下操作：</p>
+<p><strong>dev.env</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">dev.env - development configuration</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash">API endpoint</span></span><br><span class="line">MYPROJECT_APIENDPOINT=https://my.domain.com/api/dev/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Variables <span class="keyword">for</span> the database</span></span><br><span class="line">MYPROJECT_DBURL=https://my.domain.com/db/dev</span><br><span class="line">MYPROJECT_DBUSER=devadmin</span><br><span class="line">MYPROJECT_DBPASSWORD=!dfka**213=</span><br></pre></td></tr></table></figure>
+<p><strong>prod.env</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> prod.env - production configuration</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> API endpoint</span></span><br><span class="line">MYPROJECT_APIENDPOINT=https://my.domain.com/api/</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span><span class="bash"> Variables <span class="keyword">for</span> the database</span></span><br><span class="line">MYPROJECT_DBURL=https://my.domain.com/db/</span><br><span class="line">MYPROJECT_DBUSER=coreuser</span><br><span class="line">MYPROJECT_DBPASSWORD=kKKfa98*11@</span><br></pre></td></tr></table></figure>
+<p>然后，就还可以更改<code>python.envFile</code>指向<code>$&#123;workspaceFolder&#125;/prod.env</code>, debug环境的<code>envFile</code>属性指向<code>$&#123;workspaceFolder&#125;/dev.env</code></p>
+<h3 id="使用PYTHONPATH环境变量"><a class="header-anchor" href="#使用PYTHONPATH环境变量"></a>使用PYTHONPATH环境变量</h3>
+<p>pythonpath环境变量，指导interpreter去查找模块应该搜寻的其他位置。pythonPath可以包含多个路径，由<code>os.pathsep</code>分离（WINDOWS是分号，linux是冒号），无效的路径会被忽视。</p>
+<p>在VS CODE中，pythonPath会影响debug，linting，代码自动补全，单元测试以及其他依赖于python解析模块的操作。例如，你有一些源代码在<code>src</code>目录，测试在<code>tests</code>目录。当你运行测试时，它不能正常地访问到<code>src</code>中的模块，除非将<code>src</code>添加到PYTHONPATH中。</p>
+<p>建议在环境变量定义文件中设置PYTHONPATH。</p>
+<blockquote>
+<p><strong>Note</strong>: PYTHONPATH <strong>不指定</strong>python interpreter的路径，所以<strong>永远不要</strong>用它当<code>python.pythonPath</code>使用。这个命名很糟糕，容易带来误解，c’est la vie。所以多阅读<a target="_blank" rel="noopener" href="https://docs.python.org/3.7/using/cmdline.html#envvar-PYTHONPATH">PYTHONPATH文档</a>几次，并且在脑子里确定，PYTHONPATH不是用来指向interpreter的。</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"># python</a>
+              <a href="/tags/VScode/" rel="tag"># VScode</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/926935ee/" rel="prev" title="pip升级的困扰">
+                  <i class="fa fa-chevron-left"></i> pip升级的困扰
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/81b2f4bf/" rel="next" title="python基础">
+                  python基础 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Just XJP</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

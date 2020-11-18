@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"justin-x.github.io","root":"/","scheme":"Muse","version":"8.0.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="VS Code 在windows中使用python编程，一直对与环境的搭建和控制产生了迷茫。有人说用PyCharm，WinPython中自带了Spyder，在我看来都很不错，却不是够精致。我也在Notepad++上写过东西，用起来也很不错。这次，我打算尝试VS Code。很漂亮，这就够了。   python的虚拟环境，接触了pipenv，结合MSYS2搭建。   结合win10的特性，是否可以在u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VScode的基础知识">
+<meta property="og:url" content="http://justin-x.github.io/posts/33118b3d/index.html">
+<meta property="og:site_name" content="X的笔记本">
+<meta property="og:description" content="VS Code 在windows中使用python编程，一直对与环境的搭建和控制产生了迷茫。有人说用PyCharm，WinPython中自带了Spyder，在我看来都很不错，却不是够精致。我也在Notepad++上写过东西，用起来也很不错。这次，我打算尝试VS Code。很漂亮，这就够了。   python的虚拟环境，接触了pipenv，结合MSYS2搭建。   结合win10的特性，是否可以在u">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-03T07:33:22.000Z">
+<meta property="article:modified_time" content="2018-12-03T07:33:22.000Z">
+<meta property="article:author" content="Just XJP">
+<meta property="article:tag" content="VS-code">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://justin-x.github.io/posts/33118b3d/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>VScode的基础知识 | X的笔记本</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">X的笔记本</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">VS Code</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Get-Started"><span class="nav-number">1.1.</span> <span class="nav-text">Get Started</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Overview"><span class="nav-number">1.1.1.</span> <span class="nav-text">Overview[1]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">热门扩展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setup"><span class="nav-number">1.1.2.</span> <span class="nav-text">Setup[2]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Additional-Components-and-tools"><span class="nav-number">1.1.3.</span> <span class="nav-text">Additional Components and tools</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%BB%84%E4%BB%B6"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">常用组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%83%AD%E9%97%A8%E6%89%A9%E5%B1%95-2"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">热门扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%99%84%E5%8A%A0%E5%B7%A5%E5%85%B7"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">附加工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-interface"><span class="nav-number">1.1.4.</span> <span class="nav-text">User interface</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E6%8A%80%E5%B7%A7%EF%BC%9A"><span class="nav-number">1.1.5.</span> <span class="nav-text">更多技巧：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#User-Guide"><span class="nav-number">1.2.</span> <span class="nav-text">User Guide</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Editing"><span class="nav-number">1.2.1.</span> <span class="nav-text">Basic Editing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E9%80%89%E4%B8%8E%E5%A4%9A%E5%85%89%E6%A0%87"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">多选与多光标</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%9B%B8%E5%BA%94%E8%AE%BE%E7%BD%AE%EF%BC%9A"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">相应设置：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%9D%97%E9%80%89%E6%8B%A9"><span class="nav-number">1.2.1.1.2.</span> <span class="nav-text">代码块选择</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%97%E9%80%89%E6%8B%A9"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">列选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98%E5%92%8C%E8%87%AA%E5%8A%A8%E4%BF%9D%E5%AD%98"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">保存和自动保存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hot-Exit"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">Hot Exit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B7%A8%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2"><span class="nav-number">1.2.1.5.</span> <span class="nav-text">跨文件搜索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-number">1.2.1.6.</span> <span class="nav-text">代码格式化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%8A%98%E5%8F%A0"><span class="nav-number">1.2.1.7.</span> <span class="nav-text">代码折叠</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%A9%E8%BF%9B"><span class="nav-number">1.2.1.8.</span> <span class="nav-text">缩进</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.1.9.</span> <span class="nav-text">文件编码</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </section>
+        <!--/noindex-->
+
+        <section class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Just XJP</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+        </section>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://justin-x.github.io/posts/33118b3d/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Just XJP">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="X的笔记本">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VScode的基础知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-12-03 15:33:22" itemprop="dateCreated datePublished" datetime="2018-12-03T15:33:22+08:00">2018-12-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1>VS Code</h1>
+<p>在windows中使用python编程，一直对与环境的搭建和控制产生了迷茫。有人说用PyCharm，WinPython中自带了Spyder，在我看来都很不错，却不是够精致。我也在Notepad++上写过东西，用起来也很不错。这次，我打算尝试VS Code。很漂亮，这就够了。</p>
+<ul>
+<li>
+<p>python的虚拟环境，接触了pipenv，结合MSYS2搭建。</p>
+</li>
+<li>
+<p>结合win10的特性，是否可以在ubuntu for windows上搭建编辑环境？</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="Get-Started"><a class="header-anchor" href="#Get-Started"></a>Get Started</h2>
+<h3 id="Overview"><a class="header-anchor" href="#Overview"></a>Overview<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></h3>
+<p>VS code 轻量、开源，有众多实用插件、跨平台。</p>
+<h4 id="热门扩展"><a class="header-anchor" href="#热门扩展"></a>热门扩展</h4>
+<p>排名不分先后</p>
+<ol>
+<li>python</li>
+<li>C/C++</li>
+<li>ESLint</li>
+<li>C#</li>
+<li>Debugger for Chrome</li>
+<li>vscode-icons</li>
+<li>TSLint</li>
+<li>Language Support</li>
+</ol>
+<h3 id="Setup"><a class="header-anchor" href="#Setup"></a>Setup<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup></h3>
+<p>Windows 下可安装也可使用绿色包（zip），使用压缩包的时候，注意关闭CODE的自动更新。</p>
+<p>附加组件与扩展。能够完善IDE的功能，添加第三方的工具</p>
+<h3 id="Additional-Components-and-tools"><a class="header-anchor" href="#Additional-Components-and-tools"></a>Additional Components and tools</h3>
+<h4 id="常用组件"><a class="header-anchor" href="#常用组件"></a>常用组件</h4>
+<ul>
+<li>git	VS Code内建了代码管理，但仍需要Git组件的安装</li>
+</ul>
+<h4 id="热门扩展-2"><a class="header-anchor" href="#热门扩展-2"></a>热门扩展</h4>
+<p>眼熟不？</p>
+<h4 id="附加工具"><a class="header-anchor" href="#附加工具"></a>附加工具</h4>
+<p>能够增强体验的工具链：</p>
+<ul>
+<li>Yeoman</li>
+<li>generator-aspnet</li>
+<li>generator-hottowel</li>
+<li>Express</li>
+<li>Gulp</li>
+<li>Mocha</li>
+<li>Yarn</li>
+</ul>
+<p>据说大部分的tools都需要Node.js和npm</p>
+<h3 id="User-interface"><a class="header-anchor" href="#User-interface"></a>User interface</h3>
+<ul>
+<li><code>fiels.exclude</code>setting 设置不考虑的文件及文件夹，比如<code>.git</code></li>
+</ul>
+<h3 id="更多技巧："><a class="header-anchor" href="#更多技巧："></a>更多技巧：</h3>
+<p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks">https://code.visualstudio.com/docs/getstarted/tips-and-tricks</a></p>
+<h2 id="User-Guide"><a class="header-anchor" href="#User-Guide"></a>User Guide</h2>
+<h3 id="Basic-Editing"><a class="header-anchor" href="#Basic-Editing"></a>Basic Editing</h3>
+<p>键盘的快捷键可以根据习惯使用熟悉软件的映射，修改也很方便。</p>
+<h4 id="多选与多光标"><a class="header-anchor" href="#多选与多光标"></a>多选与多光标</h4>
+<p>多光标，就是可以在多个光标处同时输入与修改。</p>
+<p>Alt+Click</p>
+<p>Ctrl+Alt+Down or Ctrl+Alt+Up 能够快速复制当前行</p>
+<p>Ctrl+shift+L 添加文件中相同选择内容到多光标。（用起来很方便）</p>
+<h5 id="相应设置："><a class="header-anchor" href="#相应设置："></a>相应设置：</h5>
+<p><code>editor.multiCursorModifier</code></p>
+<h5 id="代码块选择"><a class="header-anchor" href="#代码块选择"></a>代码块选择</h5>
+<p>Shift+Alt+Left</p>
+<p>Shift+Alt+Right</p>
+<h4 id="列选择"><a class="header-anchor" href="#列选择"></a>列选择</h4>
+<p>shift+alt和鼠标拖画</p>
+<p>Ctrl+Shift+Alt+Down/Up/Left/Right/PageDown/PageUp</p>
+<h4 id="保存和自动保存"><a class="header-anchor" href="#保存和自动保存"></a>保存和自动保存</h4>
+<h4 id="Hot-Exit"><a class="header-anchor" href="#Hot-Exit"></a>Hot Exit</h4>
+<p>保持工作内容，不保存退出。</p>
+<h4 id="跨文件搜索"><a class="header-anchor" href="#跨文件搜索"></a>跨文件搜索</h4>
+<p>Ctrl+shift+F</p>
+<h4 id="代码格式化"><a class="header-anchor" href="#代码格式化"></a>代码格式化</h4>
+<p>shift+alt+f</p>
+<p>ctrl+k ctrl+f</p>
+<h4 id="代码折叠"><a class="header-anchor" href="#代码折叠"></a>代码折叠</h4>
+<p>shift+Click</p>
+<p>Ctrl+shift+[/]</p>
+<h4 id="缩进"><a class="header-anchor" href="#缩进"></a>缩进</h4>
+<p>一般<code>tab</code>是4个空格，可以通过<code>editor.insertSpaces</code>和<code>editor.tabSize</code>修改</p>
+<h4 id="文件编码"><a class="header-anchor" href="#文件编码"></a>文件编码</h4>
+<p><code>files.encoding</code></p>
+<hr>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs">https://code.visualstudio.com/docs</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/setup/setup-overview">https://code.visualstudio.com/docs/setup/setup-overview</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/VS-code/" rel="tag"># VS-code</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/9c534a52/" rel="prev" title="test markdown 2">
+                  <i class="fa fa-chevron-left"></i> test markdown 2
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/926935ee/" rel="next" title="pip升级的困扰">
+                  pip升级的困扰 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Just XJP</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+      <script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              const target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    const script = document.createElement('script');
+    script.src = '//cdn.jsdelivr.net/npm/mathjax@3.1.2/es5/tex-mml-chtml.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
