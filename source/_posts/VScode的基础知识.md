@@ -3,7 +3,7 @@ title: VScode的基础知识
 toc: true
 mathjax: true
 tags:
-  - VS-code
+  - VScode
 categories:
   - 编程
 abbrlink: 33118b3d

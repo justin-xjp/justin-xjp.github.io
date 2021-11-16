@@ -242,8 +242,54 @@ menu:
   #commonweal: /404/ || fa fa-heartbeat
 ```
 
+页面动画更改`_config.next.yml`
+
+```
+motion:
+  enable: true
+  async: false
+  transition:
+    # All available transition variants: https://theme-next.js.org/animate/
+    # Transition variants:
+    # fadeIn | fadeOut | flipXIn | flipXOut | flipYIn | flipYOut | flipBounceXIn | flipBounceXOut | flipBounceYIn | flipBounceYOut
+    # swoopIn | swoopOut | whirlIn | whirlOut | shrinkIn | shrinkOut | expandIn | expandOut
+    # bounceIn | bounceOut | bounceUpIn | bounceUpOut | bounceDownIn | bounceDownOut | bounceLeftIn | bounceLeftOut | bounceRightIn | bounceRightOut
+    # slideUpIn | slideUpOut | slideDownIn | slideDownOut | slideLeftIn | slideLeftOut | slideRightIn | slideRightOut
+    # slideUpBigIn | slideUpBigOut | slideDownBigIn | slideDownBigOut | slideLeftBigIn | slideLeftBigOut | slideRightBigIn | slideRightBigOut
+    # perspectiveUpIn | perspectiveUpOut | perspectiveDownIn | perspectiveDownOut | perspectiveLeftIn | perspectiveLeftOut | perspectiveRightIn | perspectiveRightOut
+    post_block: fadeIn
+    post_header: slideDownIn
+    post_body: slideDownIn
+    coll_header: slideLeftIn
+    # Only for Pisces | Gemini.
+    sidebar: slideUpIn
+
+    post_block: fadeIn
+    post_header: fadeInDown
+    post_body: fadeInDown
+    coll_header: fadeInLeft
+    # Only for Pisces | Gemini.
+    sidebar: fadeInUp
+```
+
+更改`Next`主题样式`_config.next.yml`：
+
+```
+# ---------------------------------------------------------------
+# Scheme Settings
+# ---------------------------------------------------------------
+
+# Schemes
+#scheme: Muse
+#scheme: Mist
+#scheme: Pisces
+scheme: Gemini
+```
+
+
+
 注意空格。
-整体来说，我仍然觉得next的动画有些花哨，我更喜欢以前的简洁。但这么简单的设置是我非常满意的地方。
+整体来说，我仍然觉得next的动画有些花哨，我更喜欢以前的简洁，所以`false`掉了。但这么简单的设置是我非常满意的地方。
 
 ---
 

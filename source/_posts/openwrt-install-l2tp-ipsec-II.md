@@ -16,9 +16,8 @@ abbrlink: c738ae61
 
 写在看之前：根据我血的教训，看前应该明确自己的需求，你需要的是IKEv2的ipsec连接吗？不是的话，不用往下看了……
 
-[penwrt配置l2tp/ipsec VPN I](e06ca514)
-
-[penwrt配置l2tp/ipsec VPN III](e7707fd9)
+[penwrt配置l2tp/ipsec VPN I](posts/e06ca514)
+[penwrt配置l2tp/ipsec VPN III](posts/e7707fd9)
 
 ## Why
 
@@ -68,12 +67,12 @@ yes, 我猜对了，但我需要对**netmask**进行更改，以适应此设置�
 `vpntest.lan` 由以下文件中产生：
 
 	1. `ipsec.conf`中的**leftid**
- 	2. `mk_server.sh` 中的 **SRVNAME** 和 **IPADDR** 变量
+	2. `mk_server.sh` 中的 **SRVNAME** 和 **IPADDR** 变量
 
 可以在脚本中修改**ORG**（组织名称）。请根据自身 `lan` 情况更改:
 
 	1. `ipsec.conf`: **leftsubnet , rightsubnet , rightdns**
- 	2. `strongswan.conf` : **charon.dns1, charon.plugins.dhcp.server**
+	2. `strongswan.conf` : **charon.dns1, charon.plugins.dhcp.server**
 
 教程中的其他设置可以直接拷贝来使用，整个教程通过了 Mac OS X 和 iPhone的测试，Android和Windows应该更没有问题。
 
@@ -343,8 +342,8 @@ include strongswan.d/*.conf
 以下几个脚本提供了证书管理功能：
 
 	1. clean.sh : 清楚所有生成的证书
- 	2. mk_server.sh : 生成根证书和服务器证书，只执行一次
- 	3. mk_user.sh: 生成客户端证书
+	2. mk_server.sh : 生成根证书和服务器证书，只执行一次
+	3. mk_user.sh: 生成客户端证书
 
 当生成完服务器根证书后，应立即去除 mk_server.sh，如再次生成根证书，原来生成的用户证书将不再匹配。此外，对这些脚本的更改还允许更改证书的有效期。
 

@@ -14,14 +14,14 @@ categories:
 
  假设在一台新的机子上，如何继续编写更新hexo呢？
 
-# 一、配置编写环境
+## 一、配置编写环境
 
-参见[hexo环境搭设](a0c259b2)，配置 git, nodejs, npm.
+参见[hexo环境搭设](posts/a0c259b2)，配置 git, nodejs, npm.
 
 - 使用git clone ，得到blog 的编译目录 ./blog
 - 进入blog目录，并使用`npm install `完成hexo环境的搭建。
 
-## 升级本地环境
+### 1.1 升级本地环境
 
 对于本地环境的升级操作，以下内容来自于网络，并很有可能已经过时了。
 
@@ -38,14 +38,18 @@ categories:
 
 因为安装一个插件，遵从`npm audit`给出的报告使用`npm i hexo@5.2.0`更新了单独的文件。
 
-# 二、 开始编写blog
+### 1.2 从头搭建环境
+
+当环境很久没有更新时，不如从头搭建。利用`hexo init [DIRNAME]`创建新的环境，只需要将已经使用的插件重新安装，相关主题、配置、POST考进目录就好了。---这是在`git clone`  `npm install`各种老旧插件出错后得到的明悟。
+
+## 二、 开始编写blog
 
 - `hexo new [layout] <title>`新建文章
-- 文章中使用`[连接名称](abbrlink_num)`建立文章间的链接。
+-  文章中使用`[连接名称](posts/abbrlink_num)`建立文章间的链接。因为我的设置中是 *permalink: posts/:abbrlink/*
 
-## hexo 中的一些使用技巧
+### 2.1 hexo 中的一些使用技巧
 
-### 1. md中的图片
+#### 1. md中的图片
 
 hexo中默认图片的引用方法与本地的markdown方法不一致。
 
@@ -62,7 +66,7 @@ hexo中默认图片的引用方法与本地的markdown方法不一致。
 
 引起的问题就是在typora中不再能明确的得到预览图片。
 
-#### 解决
+##### 解决
 
 同时使用hexo 和 Typora 的人还是很多的，有篇文章[^1]声称解决了此问题，试试看：
 
@@ -78,11 +82,19 @@ npm install hexo-image-link --save
 
 成功了，但引入了另一个问题，增加的插件似乎判断"`![xxx](xxx)`"格式并直接替代，但没有判断此代码是不是在代码块中，造成代码块中的演示也被替换成了图片。于是我只能在代码块的叹号！后面加个空格。
 
-### 2. 简要标记
+#### 2. 简要标记
 
 可以使用`<!--more-->`标记，使得文章在主页中简略显示。
 
-### 3.调试、生成
+#### 3. 标题级别
+
+```
+# 一级标题
+```
+
+一级标题在HEXO中无法从左侧的树状菜单点击。默认将文章TITLE作为一级标题，文内标题从二级开始启用。
+
+#### 4. 调试、生成
 
 ```
 $ hexo server
@@ -96,7 +108,7 @@ $ hexo generate
 
 这个命令会在`public`目录下生成静态文件，可以将此文件下的文件发布到需要的地方。
 
-### 4.自动部署
+#### 5. 自动部署
 
 ```
 $ hexo generate --deploy
@@ -139,15 +151,30 @@ $ hexo d -g
 
 
 
-# 三、git同步
+## 三、git同步
 
 - `git st`
 - `git add ...`
 - `git ci -m "commit message"`
 - `git push <origin> <branches>`
+- `git mv xxx yyy`  改名字，而且要在`.git`目录存在的那一级目录下执行命令。
 - git命令的简写来自“廖雪峰的git教程”
 
+在`~/.gitconfig`文件中，设置如下：
 
+    [user]
+        name = justin-xjp
+        email = dont@mail.me
+    [color]
+        ui = true
+    [alias]
+        st = status
+        co = checkout
+        ci = commit
+        br = branch
+        unstage = 'reset HEAD'
+        last = 'log -1'
+        lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
 直接`git push origin dev`的话，会提示
 

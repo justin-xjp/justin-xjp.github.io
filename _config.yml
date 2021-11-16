@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: X的笔记本
+title: 大谢的个人博客
 subtitle: ''
 description: ''
 keywords:
-author: Just XJP
+author: Jpeng
 language: zh-CN
 timezone: ''
 
@@ -126,16 +126,6 @@ markdown:
    typographer: true
    quotes: “”‘’
  plugins:
-   # - markdown-it-abbr
-   # - markdown-it-footnote
-   # - markdown-it-ins
-   # - markdown-it-sub
-   # - markdown-it-sup
-   # - markdown-it-mark
-   # - markdown-it-task-checkbox
-   # - markdown-it-deflist
-   # - name: markdown-it-container
-   # - markdown-it-emoji
     - markdown-it-abbr
     - markdown-it-footnote
     - markdown-it-ins

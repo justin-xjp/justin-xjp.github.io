@@ -12,11 +12,11 @@ categories:
 abbrlink: e06ca514
 ---
 
-[penwrt配置l2tp/ipsec VPN II](c738ae61)
+[penwrt配置l2tp/ipsec VPN II](posts/c738ae61)
 
-[penwrt配置l2tp/ipsec VPN III](e7707fd9)
+[penwrt配置l2tp/ipsec VPN III](posts/e7707fd9)
 
-[openwrt配置ss-server](2ac5ecda)
+[openwrt配置ss-server](posts/2ac5ecda)
 
 ## Why
 
